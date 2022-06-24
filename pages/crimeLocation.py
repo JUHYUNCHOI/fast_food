@@ -385,7 +385,33 @@ def drawCrimeLocationPage():
     # plt.yticks(np.arange(0, 7), ('0', '1GB', '2GB', '3GB', '4GB', '5GB', '6GB'))
     #
     # plt.show()
+    import streamlit.components.v1 as components
 
+    # 막대 그래프
+    import matplotlib.pyplot as plt
+    x = csv_read.columns
+    x = sorted(x)
+    choice = st.selectbox('정렬: ', x)
+
+    col1, col2 = st.columns(2)
+    df1 = csv_read[['범죄분류', choice]]
+
+    x = df1['범죄분류']
+    y = df1[choice]
+    df1.set_index('범죄분류', inplace=True)
+    sorted_data = df1.sort_values(choice, ascending = False)
+
+    col1.dataframe(sorted_data, 800, 8000)
+    plt.plot(kind='bar')
+    fig = plt.figure()
+    ax = fig.add_subplot(1, 1, 1)
+
+    ax.scatter(
+        x,
+        y,
+    )
+
+    col2.wite(fig)
 
 
 if __name__ == "__main__":
