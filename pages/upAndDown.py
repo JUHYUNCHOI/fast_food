@@ -2,7 +2,7 @@ import streamlit as st
 import os
 import time
 import random
-from pygame import mixer
+from playsound import playsound
 from PIL import Image
 import time
 
@@ -19,34 +19,22 @@ def up(component):
     component.image(image, caption='Up입니다.')
     bigger_voice = getSound('bigger.mp3')
 
-    mixer.init()  # Initialzing pyamge mixer
+    playsound(bigger_voice)
 
-    mixer.music.load(bigger_voice)
-    mixer.music.play()
-
-    # time.sleep(5)
-    #
-    # mixer.music.stop()
 
 def down(component):
     image = Image.open(getImage('down.PNG'))
     component.image(image, caption='Down입니다.')
     smaller_voice = getSound('smaller.mp3')
 
-    mixer.init()  # Initialzing pyamge mixer
-
-    mixer.music.load(smaller_voice)
-    mixer.music.play()
+    playsound(smaller_voice)
 
 def correct(component):
     image = Image.open(getImage('correct.jpg'))
     component.image(image, caption='정답입니다.')
     correct_voice = getSound('correct.mp3')
 
-    mixer.init()  # Initialzing pyamge mixer
-
-    mixer.music.load(correct_voice)
-    mixer.music.play()
+    playsound(correct_voice)
 
 
 def setRandomNumber():
